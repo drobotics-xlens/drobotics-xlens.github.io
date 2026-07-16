@@ -59,9 +59,11 @@
         <li><a href="#">Yonghao He</a><sup>1</sup></li>
         <li><a href="#">Bohao Zhang</a><sup>1</sup></li>
         <li><a href="#">Fa Fu</a><sup>1</sup></li>
+        <li class="author-break" aria-hidden="true"></li>
         <li><a href="#">Chenhui Hou</a><sup>1</sup></li>
         <li><a href="#">Xianbao Hou</a><sup>1,3</sup></li>
         <li><a href="#">Lijun Han</a><sup>1</sup></li>
+        <li><a href="#">Cong Yang</a><sup>3</sup></li>
         <li><a href="#">Wei Sui</a><sup>1,&dagger;</sup></li>
       </ul>
       <p class="affil reveal"><sup>1</sup>D-Robotics&ensp; <sup>2</sup>The University of Tokyo&ensp; <sup>3</sup>Soochow University</p>
@@ -137,24 +139,23 @@
       <div class="abstract-body">
         <p class="reveal">
           We present <strong>X-Lens</strong>, a compact feed-forward model for metric depth estimation
-          from a variable number of calibrated fisheye and pinhole views. To meet real-time downstream
-          demands, X-Lens adopts a "simple yet effective" design guided by two core principles. First,
-          two lightweight modules handle heterogeneous cameras: learnable calibration tokens align
-          fisheye and pinhole projective spaces, and a Jacobian-parameterized distortion bias in
-          cross-attention enforces cross-camera consistency, letting a <strong>0.04B</strong> model
-          generalize robustly. Second, X-Lens predicts only depth and a global scale, a minimalist
-          objective that eases convergence.
+          from a variable number of calibrated fisheye and pinhole views. To support real-time downstream
+          perception, X-Lens is built around a geometry-aware heterogeneous camera formulation with two key
+          components. Learnable calibration tokens provide a coarse alignment between fisheye and pinhole
+          projective spaces, while a Jacobian-parameterized distortion bias injected into cross-attention
+          models local projection changes and promotes cross-camera consistency, enabling robust generalization
+          with only <strong>0.04B</strong> parameters and up to <strong>41 FPS</strong>. The model predicts dense
+          depth together with a global metric scale, avoiding auxiliary reconstruction targets that increase
+          computation and optimization complexity.
         </p>
         <p class="reveal">
-          To supervise this design, we train X-Lens on multiple public datasets and
-          <strong>OmniScene</strong>, our newly released large-scale synthetic dataset comprising
-          approximately 266K synchronized six-view frames across 103 indoor and outdoor scenes. Without
-          benchmark-specific fine-tuning, X-Lens attains the best reported results on the heterogeneous
-          OmniScene-Full benchmark, lowering metric depth AbsRel by <strong>25.4%</strong> over the
-          strongest baseline while using <strong>88.9%</strong> fewer parameters, and it remains
-          competitive on homogeneous fisheye-only and pinhole-only settings. Furthermore, we integrate
-          X-Lens as a geometry-aware visual encoder into a Vision-Action model, demonstrating its
-          utility for multi-view robotic manipulation.
+          To learn such cross-camera generalization at scale and depth, X-Lens is trained on multiple public
+          datasets and <strong>OmniScene</strong>, our newly released large-scale synthetic dataset containing
+          approximately 266K synchronized six-view frames, 1.7M individual images, and 103 indoor and outdoor
+          scenes. Extensive experiments on both real-world and synthetic indoor and outdoor datasets demonstrate
+          superior heterogeneous-camera metric depth accuracy, reducing AbsRel by <strong>25.4%</strong> on
+          OmniScene-Full over the strongest baseline while using <strong>88.9%</strong> fewer parameters, with
+          competitive performance on conventional fisheye-only and pinhole-only settings.
         </p>
       </div>
 
